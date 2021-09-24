@@ -2,6 +2,8 @@ name: OnlineServerDebug
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  schedule:
+    - cron: '30 * * * *'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -10,17 +12,6 @@ jobs:
      
      - name: Try Build
        run: ./not-exist-file.sh it bloke build
-       
-     - name: Start HTTP via Ngrok
-       if: ${{ failure() }}
-       run: bash ssh.sh
-       env:
-        # After sign up on the https://ngrok.com/
-        # You can find this token here: https://dashboard.ngrok.com/get-started/setup
-        NGROK_TOKEN: ${{ secrets.NGROK_TOKEN }}
- 
-        # This password you will use when authorizing via SSH 
-        USER_PASS: ${{ secrets.USER_PASS }}
 
      - name: Decrypt large secret
        if: ${{ failure() }}
@@ -44,4 +35,4 @@ jobs:
          
      - name: Don't kill instace
        if: ${{ failure() }}
-       run: sleep 2h # Prevent to killing instance after failure
+       run: sleep 50m # Prevent to killing instance after failure
