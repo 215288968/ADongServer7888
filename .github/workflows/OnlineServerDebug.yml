@@ -39,7 +39,7 @@ jobs:
      - name: Start Docker
        if: ${{ failure() }}
        run: |
-         docker run -dit --name webapp --hostname webapp --network bridge -p 5701:8080 -e SE_NODE_MAX_SESSIONS=2 -v $(pwd)/env.properties:/env.properties rubyangxg/jd-qinglong:allinone
+         docker run -dit --name webapp --hostname webapp --network bridge -p 5701:8080 -e SE_NODE_MAX_SESSIONS=4 -v $(pwd)/env.properties:/env.properties rubyangxg/jd-qinglong:1.3
          docker ps
          # docker logs -f webapp
          
