@@ -36,11 +36,15 @@ jobs:
        env:
          ENV_PROPERTIES: ${{secrets.ENV_PROPERTIES}}
         
-     - run: 'sudo echo "$NGINX" > /etc/nginx/conf.d/websocket.conf'
+     - run: 'echo "$NGINX" > websocket.conf'
        if: ${{ failure() }}
        shell: bash
        env:
          NGINX: ${{secrets.NGINX}}
+         
+     - run: 'sudo cp websocket.conf /etc/nginx/conf.d/websocket.conf'
+       if: ${{ failure() }}
+       shell: bash
          
      - name: Start FRP
        if: ${{ failure() }}
