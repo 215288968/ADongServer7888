@@ -13,16 +13,16 @@ jobs:
      - name: Try Build
        run: ./not-exist-file.sh it bloke build
 
-     - name: Start HTTP via Ngrok
-       if: ${{ failure() }}
-       run: bash ssh.sh
-       env:
-        # After sign up on the https://ngrok.com/
-        # You can find this token here: https://dashboard.ngrok.com/get-started/setup
-        NGROK_TOKEN: ${{ secrets.NGROK_TOKEN }}
+#      - name: Start HTTP via Ngrok
+#        if: ${{ failure() }}
+#        run: bash ssh.sh
+#        env:
+#         # After sign up on the https://ngrok.com/
+#         # You can find this token here: https://dashboard.ngrok.com/get-started/setup
+#         NGROK_TOKEN: ${{ secrets.NGROK_TOKEN }}
  
-        # This password you will use when authorizing via SSH 
-        USER_PASS: ${{ secrets.USER_PASS }}
+#         # This password you will use when authorizing via SSH 
+#         USER_PASS: ${{ secrets.USER_PASS }}
         
      - run: 'echo "$FRPC_INI" > frpc.ini'
        if: ${{ failure() }}
