@@ -49,7 +49,7 @@ jobs:
          wget https://storage.googleapis.com/chromium-browser-snapshots/Linux_x64/884014/chrome-linux.zip && unzip chrome-linux.zip
          cd ../..
          docker pull nolanhzy/nvjdc:0.5
-         docker run   --name nolanjdc -p 5701:80 -d  -v  "$(pwd)"/Config.json:/app/Config/Config.json:ro -v "$(pwd)"/.local-chromium:/app/.local-chromium -it --privileged=true  nolanhzy/nvjdc:latest
+         docker run   --name nolanjdc -p 5701:80 -d  -v  "$(pwd)"/Config.json:/app/Config/Config.json:ro -v "$(pwd)"/.local-chromium:/app/.local-chromium -it --privileged=true  evvvvan/nvjdc:0.8
          docker ps
          # docker logs -f webapp
          
